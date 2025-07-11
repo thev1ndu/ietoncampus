@@ -1,55 +1,43 @@
-export interface EventMetadata {
+import fs from "fs/promises";
+import path from "path";
+import matter from "gray-matter";
+import { compileMDX } from "next-mdx-remote/rsc";
+import { ReactElement } from "react";
+
+export interface EventMeta {
   title: string;
-  description: string;
   date: string;
-  location?: string;
-  duration?: string;
-  capacity?: number;
-  registrations?: number;
-  status: "upcoming" | "completed" | "cancelled";
-  tags?: string[];
+  thumbnail: string;
 }
 
-// 2. Import and use the Events component in your page/component
-import Events from "@/components/Events"; // Adjust path as needed
-import { EventMetadata } from "@/lib/events";
+const EVENTS_PATH = path.join(process.cwd(), "content/events");
 
-// 3. Create your events data
-const eventsData: EventMetadata[] = [
-  {
-    title: "React Workshop: Building Modern Web Applications",
-    description:
-      "Learn the fundamentals of React and build your first interactive web application with hands-on exercises and real-world projects.",
-    date: "March 15, 2024 - 10:00 AM",
-    location: "Engineering Building, Room 101",
-    duration: "4 hours",
-    capacity: 50,
-    registrations: 32,
-    status: "upcoming",
-    tags: ["React", "JavaScript", "Web Development", "Workshop"],
-  },
-  {
-    title: "AI & Machine Learning Seminar",
-    description:
-      "Explore the latest trends in artificial intelligence and machine learning with industry experts and researchers.",
-    date: "March 22, 2024 - 2:00 PM",
-    location: "Main Auditorium",
-    duration: "2 hours",
-    capacity: 150,
-    registrations: 89,
-    status: "upcoming",
-    tags: ["AI", "Machine Learning", "Technology", "Seminar"],
-  },
-  {
-    title: "IoT Innovation Challenge",
-    description:
-      "Compete in teams to create innovative IoT solutions for smart cities and sustainable technology.",
-    date: "March 8, 2024 - 9:00 AM",
-    location: "Innovation Lab",
-    duration: "8 hours",
-    capacity: 40,
-    registrations: 40,
-    status: "completed",
-    tags: ["IoT", "Innovation", "Competition", "Smart Cities"],
-  },
-];
+export async function getEventSlugs(): Promise<string[]> {
+  const entries = await fs.readdir(EVENTS_PATH);
+  return entries
+    .filter((f) => f.endsWith(".mdx"))
+    .map((f) => f.replace(/\.mdx$/, ""));
+}
+
+export async function getAllEvents(): Promise<(EventMeta & { slug: string })[]> {
+  const slugs = await getEventSlugs();
+  return Promise.all(
+    slugs.map(async (slug) => {
+      const source = await fs.readFile(path.join(EVENTS_PATH, `${slug}.mdx`), "utf8");
+      const { data } = matter(source);
+      return { slug, ...(data as EventMeta) };
+    })
+  );
+}
+
+export async function getEventBySlug(
+  slug: string
+): Promise<{ meta: EventMeta; content: ReactElement }> {
+  const source = await fs.readFile(path.join(EVENTS_PATH, `${slug}.mdx`), "utf8");
+  const { frontmatter, content } = await compileMDX<EventMeta>({
+    source,
+    options: { parseFrontmatter: true },
+  });
+
+  return { meta: frontmatter, content };
+}
