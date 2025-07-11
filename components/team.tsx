@@ -14,7 +14,7 @@ const teamMembers = [
   {
     name: "Dhulinde Thevarapperuma",
     role: "Vice President",
-    image: "/team/vice.jpeg",
+    image: "/team/lol",
   },
   {
     name: "Sumuthna Herath",
@@ -34,12 +34,12 @@ const teamMembers = [
   {
     name: "Sunera Manimendra",
     role: "Director of Events",
-    image: "/team/sunera.jpg",
+    image: "/team/vice.jpeg",
   },
   {
     name: "Anusigan Sivanathan",
     role: "Director of Media",
-    image: "/team/anusigan.jpg",
+    image: "/team/anusigan.jpeg",
   },
   {
     name: "Ravindi Welagedara",
