@@ -61,8 +61,8 @@ export default function TeamSection() {
         </h3>
 
         <SectionHeading>
-          The Institution of Engineering and Technology on Campus – Informatics
-          Institute of Technology
+          The dedicated team behind IET on Campus Informatics Institute of
+          Technology.
         </SectionHeading>
 
         <Carousel
