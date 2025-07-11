@@ -54,7 +54,14 @@ export default function TeamSection() {
 
   useEffect(() => {
     const updateCount = () => {
-      setVisibleCount(window.innerWidth < 640 ? 1 : 3);
+      const width = window.innerWidth;
+      if (width < 640) {
+        setVisibleCount(1); // Mobile
+      } else if (width < 1024) {
+        setVisibleCount(2); // Tablet
+      } else {
+        setVisibleCount(3); // Desktop
+      }
     };
     updateCount();
     window.addEventListener("resize", updateCount);
