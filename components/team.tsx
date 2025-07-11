@@ -77,7 +77,7 @@ export default function TeamSection() {
 
   return (
     <section
-      id="skills"
+      id="team"
       className="mt-16 sm:mt-20 mb-20 px-4 sm:px-6 lg:px-8 scroll-mt-28 text-center"
     >
       <div className="max-w-6xl mx-auto">
