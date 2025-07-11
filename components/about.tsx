@@ -17,32 +17,37 @@ export default function About() {
       transition={{ delay: 0.175 }}
       id="about"
     >
-      <SectionHeading>About me</SectionHeading>
+      <h3 className="text-l font-medium mb-4 capitalize text-center">
+        ABOUT US
+      </h3>
+      <SectionHeading>
+        The Institution of Engineering and Technology on Campus - Informatics
+        Institute of Technology
+      </SectionHeading>
       <p className="mb-3">
-        After graduating with a degree in{" "}
-        <span className="font-medium">Accounting</span>, I decided to pursue my
-        passion for programming. I enrolled in a coding bootcamp and learned{" "}
-        <span className="font-medium">full-stack web development</span>.{" "}
-        <span className="italic">My favorite part of programming</span> is the
-        problem-solving aspect. I <span className="underline">love</span> the
-        feeling of finally figuring out a solution to a problem. My core stack
-        is{" "}
         <span className="font-medium">
-          React, Next.js, Node.js, and MongoDB
-        </span>
-        . I am also familiar with TypeScript and Prisma. I am always looking to
-        learn new technologies. I am currently looking for a{" "}
-        <span className="font-medium">full-time position</span> as a software
-        developer.
+          IET On Campus – Informatics Institute of Technology (IIT)
+        </span>{" "}
+        is a vibrant student chapter affiliated with the prestigious Institution
+        of Engineering and Technology (IET). Our mission is to empower the next
+        generation of engineers, technologists, and innovators by bridging the
+        gap between academic knowledge and real-world applications.
       </p>
 
-      <p>
-        <span className="italic">When I'm not coding</span>, I enjoy playing
-        video games, watching movies, and playing with my dog. I also enjoy{" "}
-        <span className="font-medium">learning new things</span>. I am currently
-        learning about{" "}
-        <span className="font-medium">history and philosophy</span>. I'm also
-        learning how to play the guitar.
+      <p className="mb-3">
+        At IIT, we create an engaging environment where students can thrive
+        through hands-on workshops, technical talks, industry exposure, and
+        collaborative projects. From cutting-edge tech events to professional
+        networking sessions, we provide a platform for students to enhance their
+        skills, explore emerging technologies, and grow as future leaders in
+        engineering.
+      </p>
+
+      <p className="mb-3">
+        We believe in fostering a passion for innovation, encouraging teamwork,
+        and nurturing career development through continuous learning. Join us in
+        our journey to inspire, innovate, and make a meaningful impact in the
+        world of technology.
       </p>
     </motion.section>
   );
