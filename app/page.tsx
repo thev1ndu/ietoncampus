@@ -2,8 +2,8 @@ import About from "@/components/about";
 import Contact from "@/components/contact";
 import Intro from "@/components/intro";
 import SectionDivider from "@/components/section-divider";
-import Skills from "@/components/skills";
-import Events from "@/components/events";
+import TeamSection from "@/components/team";
+import Events from "@/components/Events";
 
 export default async function Home() {
   return (
@@ -12,7 +12,7 @@ export default async function Home() {
       <SectionDivider />
       <About />
       <Events />
-      <Skills />
+      <TeamSection />
       <Contact />
     </main>
   );
