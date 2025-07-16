@@ -1,5 +1,5 @@
 {
-  "name": "portfolio",
+  "name": "iet-on-campus-iit",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -78,5 +78,11 @@
   },
   "devDependencies": {
     "@types/react-vertical-timeline-component": "^3.3.3"
+  },
+  "resolutions": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "@types/react": "18.2.14",
+    "@types/react-dom": "18.2.6"
   }
 }
