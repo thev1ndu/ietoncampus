@@ -2,8 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 import SectionHeading from "./section-heading";
-import Image from "next/image";
 
 const teamMembers = [
   {
@@ -90,7 +92,7 @@ export default function TeamSection() {
           Technology.
         </SectionHeading>
 
-        <div className="overflow-x-auto px-4">
+        <div className="mt-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={index}
@@ -98,36 +100,39 @@ export default function TeamSection() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -100 }}
               transition={{ duration: 0.5 }}
-              className="mt-8 flex gap-6 overflow-x-auto px-4 sm:justify-center"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center"
             >
               {teamMembers
                 .slice(index, index + visibleCount)
                 .concat(
                   index + visibleCount > teamMembers.length
-                    ? teamMembers.slice(0, (index + visibleCount) % teamMembers.length)
+                    ? teamMembers.slice(
+                        0,
+                        (index + visibleCount) % teamMembers.length
+                      )
                     : []
                 )
                 .map((member, idx) => (
-                  <div
+                  <Card
                     key={idx}
-                    className="p-6 flex flex-col items-center bg-white dark:bg-slate-800 border rounded-2xl shadow-md w-80"
+                    className="w-full max-w-sm hover:shadow-lg transition-shadow duration-300"
                   >
-                    <div className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mb-3 sm:mb-4 rounded-full overflow-hidden border border-gray-300 dark:border-slate-700">
-                      <Image
-                        src={member.image}
-                        alt={member.name}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 640px) 96px, (max-width: 768px) 112px, 128px"
-                      />
-                    </div>
-                    <h4 className="text-sm sm:text-base md:text-lg font-semibold text-gray-900 dark:text-white">
-                      {member.name}
-                    </h4>
-                    <p className="text-xs sm:text-sm text-muted-foreground">
-                      {member.role}
-                    </p>
-                  </div>
+                    <CardContent className="p-6 flex flex-col items-center text-center">
+                      <Avatar className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mb-4">
+                        <AvatarImage
+                          src={member.image}
+                          alt={member.name}
+                          className="object-cover"
+                        />
+                      </Avatar>
+                      <h4 className="text-sm sm:text-base md:text-lg font-semibold mb-2">
+                        {member.name}
+                      </h4>
+                      <Badge variant="outline" className="text-xs sm:text-sm">
+                        {member.role}
+                      </Badge>
+                    </CardContent>
+                  </Card>
                 ))}
             </motion.div>
           </AnimatePresence>
