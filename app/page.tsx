@@ -3,7 +3,7 @@ import Contact from "@/components/contact";
 import Intro from "@/components/intro";
 import SectionDivider from "@/components/section-divider";
 import TeamSection from "@/components/team";
-import Events from "@/components/events";
+import Events from "@/components/Events";
 
 export default async function Home() {
   return (
